@@ -10,30 +10,30 @@ function App() {
 
   // Load tasks from backend on page load
   useEffect(() => {
-    axios.get(backendURL)
-      .then(res => setTasks(res.data))
-      .catch(err => console.error("❌ Error fetching tasks:", err));
-  }, []);
+  axios.get(backendURL)
+    .then(res => setTasks(res.data))
+    .catch(err => console.error("❌ Error fetching tasks:", err));
+}, []);
 
   // Add task to backend
   const addTask = () => {
-    if (!input.trim()) return;
+  if (!input.trim()) return;
 
-    axios.post('https://your-backend.onrender.com/tasks', {
-    text: input  // ✅ "text" must match the schema
-  })
-  .then(res => setTasks([...tasks, res.data]))
-  .catch(err => console.error("❌ Error adding task:", err));
+  axios.post(backendURL, { text: input }) // ✅ Send task to backend
+    .then(res => setTasks([...tasks, res.data]))
+    .catch(err => console.error("❌ Error adding task:", err));
 
   setInput('');
 };
 
+
   // Delete task from backend
-  const deleteTask = (id) => {
-    axios.delete(`${backendURL}/${id}`)
-      .then(() => setTasks(tasks.filter(task => task._id !== id)))
-      .catch(err => console.error("❌ Error deleting task:", err));
-  };
+ const deleteTask = (id) => {
+  axios.delete(`${backendURL}/${id}`)
+    .then(() => setTasks(tasks.filter(task => task._id !== id)))
+    .catch(err => console.error("❌ Error deleting task:", err));
+};
+
 
   return (
     <div className="App">
