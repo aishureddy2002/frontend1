@@ -6,7 +6,7 @@ function App() {
   const [input, setInput] = useState('');
   const [tasks, setTasks] = useState([]);
 
-  const backendURL = 'https://your-backend.onrender.com/tasks'; // Replace with your actual URL
+  const backendURL = "https://backend1-u3md.onrender.com/tasks"; // Replace with your actual URL
 
   // Load tasks from backend on page load
   useEffect(() => {
