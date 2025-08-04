@@ -19,12 +19,14 @@ function App() {
   const addTask = () => {
     if (!input.trim()) return;
 
-    axios.post(backendURL, { text: input })
-      .then(res => setTasks([...tasks, res.data]))
-      .catch(err => console.error("❌ Error adding task:", err));
+    axios.post('https://your-backend.onrender.com/tasks', {
+    text: input  // ✅ "text" must match the schema
+  })
+  .then(res => setTasks([...tasks, res.data]))
+  .catch(err => console.error("❌ Error adding task:", err));
 
-    setInput('');
-  };
+  setInput('');
+};
 
   // Delete task from backend
   const deleteTask = (id) => {
